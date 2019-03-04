@@ -6,14 +6,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class EntryDatabase extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "entries";
+    private static EntryDatabase instance;
 
-    public EntryDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    private EntryDatabase(Context context) {
+        super(context, TABLE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE TABLE_NAME (ID INTEGER PRIMARY KEY, TITLE TEXT, CONTENT TEXT, MOOD INTEGER, TIMESTAMP TEXT)";
+        String createTable = "CREATE TABLE TABLE_NAME (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, mood INTEGER, timestamp TEXT);";
         db.execSQL(createTable);
     }
 
@@ -21,5 +22,15 @@ public class EntryDatabase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    public static EntryDatabase getInstance(Context context) {
+        if(instance != null) {
+            return instance;
+        }
+        else {
+            instance = new EntryDatabase(context);
+            return instance;
+        }
     }
 }

@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
        // GridView view = findViewById(R.id.grid);
         //view.setOnItemClickListener(new clickListener());
         //view.setAdapter(adapter);
+        EntryDatabase db = EntryDatabase.getInstance(getApplicationContext());
     }
 
     public void buttonClicked(View view) {
