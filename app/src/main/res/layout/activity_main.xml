@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:clickable="true"
+        android:onClick="buttonClicked"
         android:padding="10dp"
         android:paddingEnd="20dp"
         android:paddingBottom="10dp"

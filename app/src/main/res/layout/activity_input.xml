@@ -23,11 +23,13 @@
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
-        android:layout_height="418dp"
+        android:layout_height="427dp"
         android:gravity="top"
         android:hint="content"
         android:inputType="text|textMultiLine"
-        android:paddingLeft="10dp" />
+        android:paddingLeft="10dp"
+        android:backgroundTint="@android:color/holo_green_dark"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
