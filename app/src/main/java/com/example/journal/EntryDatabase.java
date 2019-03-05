@@ -1,12 +1,13 @@
 package com.example.journal;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class EntryDatabase extends SQLiteOpenHelper {
-    private static final String TABLE_NAME = "entries";
+    private static final String TABLE_NAME = "TABLE_NAME";
     private static EntryDatabase instance;
 
     private EntryDatabase(Context context) {
@@ -40,8 +41,16 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
     public Cursor selectAll() {
-        System.out.println("testtest");
         Cursor cursor = getWritableDatabase().rawQuery( "SELECT * FROM TABLE_NAME", null);
         return cursor;
+    }
+
+    public void insert(JournalEntry entry) {
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("title", entry.getTitle());
+        values.put("timestamp", entry.getTimestamp());
+        values.put("content", entry.getContent());
+        database.insert(TABLE_NAME,null,values);
     }
 }

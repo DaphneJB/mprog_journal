@@ -8,7 +8,7 @@
     tools:context=".InputActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_green_dark"
@@ -21,14 +21,14 @@
         tools:layout_editor_absoluteY="38dp" />
 
     <EditText
-        android:id="@+id/edit_text"
+        android:id="@+id/editContent"
         android:layout_width="match_parent"
         android:layout_height="427dp"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:gravity="top"
         android:hint="content"
         android:inputType="text|textMultiLine"
-        android:paddingLeft="10dp"
-        android:backgroundTint="@android:color/holo_green_dark"/>
+        android:paddingLeft="10dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -77,13 +77,14 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submit"
         android:layout_width="393dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@android:color/holo_green_dark"
         android:fontFamily="casual"
+        android:onClick="submitClicked"
+        android:radius="10dp"
         android:text="Submit entry!"
-        android:textAllCaps="false"
-        android:radius="10dp"/>
+        android:textAllCaps="false" />
 </LinearLayout>
