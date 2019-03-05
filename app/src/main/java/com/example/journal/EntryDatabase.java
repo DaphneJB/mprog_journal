@@ -10,18 +10,22 @@ public class EntryDatabase extends SQLiteOpenHelper {
     private static EntryDatabase instance;
 
     private EntryDatabase(Context context) {
-        super(context, TABLE_NAME, null, 1);
+        super(context, TABLE_NAME, null, 5);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE TABLE_NAME (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, mood INTEGER, timestamp TEXT);";
+        System.out.println("versies: " + db.getVersion());
+        String createTable = "CREATE TABLE TABLE_NAME (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, mood TEXT, timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+        //System.out.println("versies: " + db.getVersion());
         db.execSQL(createTable);
+        db.execSQL("INSERT INTO TABLE_NAME (title, content, mood) VALUES (\"test\", \"best\", \"great\")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS TABLE_NAME");
+        System.out.print("test");
         onCreate(db);
     }
 
@@ -36,6 +40,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
     public Cursor selectAll() {
+        System.out.println("testtest");
         Cursor cursor = getWritableDatabase().rawQuery( "SELECT * FROM TABLE_NAME", null);
         return cursor;
     }
