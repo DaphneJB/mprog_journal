@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/moodImage"
         android:layout_width="107dp"
         android:layout_height="95dp"
         android:rotation="90"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:text="Bad day!"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="20sp" />
 
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:paddingTop="10dp"
             android:text="date"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textSize="14sp" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:paddingTop="10dp"
             android:text="date"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textSize="14sp" />
 
     </LinearLayout>

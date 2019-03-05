@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.view.View;
 import android.support.v4.widget.ResourceCursorAdapter;
 //import android.widget.ResourceCursorAdapter;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class EntryAdapter extends ResourceCursorAdapter {
@@ -29,5 +31,28 @@ public class EntryAdapter extends ResourceCursorAdapter {
         //vraagt mood op van dagboekdag
         String mood = cursor.getString(cursor.getColumnIndex("mood"));
         moodJournal.setText(mood);
+        int drawableId = R.drawable.funny;
+        switch(mood) {
+            case "funny":
+                drawableId = R.drawable.funny;
+                break;
+            case "great":
+                drawableId = R.drawable.amazing;
+                break;
+            case "depressive":
+                drawableId = R.drawable.depressive;
+                break;
+            case "happy":
+                drawableId = R.drawable.happy;
+                break;
+            case "mad":
+                drawableId = R.drawable.mad;
+                break;
+            case "sad":
+                drawableId = R.drawable.sad;
+                break;
+        }
+        ImageView moodImage = view.findViewById(R.id.moodImage);
+        moodImage.setImageResource(drawableId);
     }
 }
