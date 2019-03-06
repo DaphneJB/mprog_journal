@@ -32,12 +32,5 @@ public class JournalEntry implements Serializable {
         return timestamp;
     }
 
-    public void setId(int newId) {
-        id = newId;
-    }
-
-    public int getId() {
-        return id;
-    }
 }
 

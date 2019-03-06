@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     private EntryDatabase db;
+    private EntryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = EntryDatabase.getInstance(getApplicationContext());
-        EntryAdapter adapter = new EntryAdapter(getApplicationContext(), db.selectAll());
+        adapter = new EntryAdapter(getApplicationContext(), db.selectAll());
         ListView view = findViewById(R.id.listview);
         view.setOnItemClickListener(new ClickListener());
         view.setOnItemLongClickListener(new ClickLongListener());
@@ -36,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+            Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+            JournalEntry entry = new JournalEntry(cursor.getString(cursor.getColumnIndex("title")),
+                    cursor.getString(cursor.getColumnIndex("content")),cursor.getString(
+                            cursor.getColumnIndex("mood")));
+            entry.setTimestamp(cursor.getString(cursor.getColumnIndex("timestamp")));
+            intent.putExtra("entry", entry);
             startActivity(intent);
         }
     }
@@ -45,7 +52,18 @@ public class MainActivity extends AppCompatActivity {
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             Cursor clickedEntry = (Cursor) parent.getItemAtPosition(position);
             db.delete(clickedEntry.getInt(clickedEntry.getColumnIndex("_id")));
+            updateData();
             return true;
         }
+    }
+
+    private void updateData() {
+        adapter.swapCursor(db.selectAll());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 }

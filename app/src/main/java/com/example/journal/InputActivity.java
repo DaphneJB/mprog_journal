@@ -1,5 +1,6 @@
 package com.example.journal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,9 @@ public class InputActivity extends AppCompatActivity {
         EditText content = findViewById(R.id.editContent);
         JournalEntry entry = new JournalEntry(title.getText().toString(),content.getText().toString(),"great");
         EntryDatabase.getInstance(getApplicationContext()).insert(entry);
+        Intent intent = new Intent(InputActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void moodClicked(View view) {

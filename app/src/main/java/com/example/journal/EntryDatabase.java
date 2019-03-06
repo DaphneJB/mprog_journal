@@ -11,7 +11,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     private static EntryDatabase instance;
 
     private EntryDatabase(Context context) {
-        super(context, TABLE_NAME, null, 5);
+        super(context, TABLE_NAME, null, 6);
     }
 
     @Override
