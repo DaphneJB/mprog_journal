@@ -3,7 +3,6 @@ package com.example.journal;
 import java.io.Serializable;
 
 public class JournalEntry implements Serializable {
-    private int id;
     private String title, content, mood, timestamp;
 
     public JournalEntry(String journalTitle, String journalContent, String journalMood){

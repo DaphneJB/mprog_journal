@@ -13,7 +13,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Intent intent = getIntent();
         JournalEntry retrievedEntry = (JournalEntry) intent.getSerializableExtra("entry");
-        System.out.println("titel: " + retrievedEntry.getTitle());
         //set the title of the entry
         TextView titleView = findViewById(R.id.titleJournal);
         titleView.setText(retrievedEntry.getTitle());

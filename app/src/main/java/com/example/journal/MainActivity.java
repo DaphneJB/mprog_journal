@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         db = EntryDatabase.getInstance(getApplicationContext());
         adapter = new EntryAdapter(getApplicationContext(), db.selectAll());
-        System.out.println("db " + db.getReadableDatabase());
         ListView view = findViewById(R.id.listview);
         view.setOnItemClickListener(new ClickListener());
         view.setOnItemLongClickListener(new ClickLongListener());

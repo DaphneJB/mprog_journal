@@ -12,7 +12,6 @@ import java.nio.file.ClosedFileSystemException;
 public class EntryDatabase extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "TABLE_NAME";
     private static EntryDatabase instance;
-    private int version;
 
     private EntryDatabase(Context context) {
         super(context, TABLE_NAME, null, 6);
