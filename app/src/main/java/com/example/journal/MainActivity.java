@@ -1,6 +1,7 @@
 package com.example.journal;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,16 +11,18 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
+    private EntryDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EntryDatabase db = EntryDatabase.getInstance(getApplicationContext());
+        db = EntryDatabase.getInstance(getApplicationContext());
         EntryAdapter adapter = new EntryAdapter(getApplicationContext(), db.selectAll());
         ListView view = findViewById(R.id.listview);
         view.setOnItemClickListener(new ClickListener());
+        view.setOnItemLongClickListener(new ClickLongListener());
         view.setAdapter(adapter);
     }
 
@@ -34,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(MainActivity.this, DetailActivity.class);
             startActivity(intent);
+        }
+    }
+
+    private class ClickLongListener implements AdapterView.OnItemLongClickListener {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            Cursor clickedEntry = (Cursor) parent.getItemAtPosition(position);
+            db.delete(clickedEntry.getInt(clickedEntry.getColumnIndex("_id")));
+            return true;
         }
     }
 }

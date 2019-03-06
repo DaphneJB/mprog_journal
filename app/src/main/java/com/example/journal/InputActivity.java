@@ -26,7 +26,6 @@ public class InputActivity extends AppCompatActivity {
     }
 
     public void moodClicked(View view) {
-        //view.setAlpha(1);
         view.setBackgroundColor(Color.GRAY);
     }
 

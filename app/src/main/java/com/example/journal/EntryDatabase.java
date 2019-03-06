@@ -50,4 +50,9 @@ public class EntryDatabase extends SQLiteOpenHelper {
         values.put("content", entry.getContent());
         database.insert(TABLE_NAME,null,values);
     }
+
+    public void delete(long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_NAME, "_id=" + id, null);
+    }
 }
