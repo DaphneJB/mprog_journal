@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
         ListView view = findViewById(R.id.listview);
         view.setOnItemClickListener(new ClickListener());
         view.setOnItemLongClickListener(new ClickLongListener());
+        Parcelable state = view.onSaveInstanceState();
         view.setAdapter(adapter);
+        view.onRestoreInstanceState(state);
     }
 
     public void buttonClicked(View view) {
@@ -69,4 +72,5 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         adapter.notifyDataSetChanged();
     }
+
 }
