@@ -2,11 +2,13 @@ package com.example.journal;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         db = EntryDatabase.getInstance(getApplicationContext());
         adapter = new EntryAdapter(getApplicationContext(), db.selectAll());
+        System.out.println("db " + db.getReadableDatabase());
         ListView view = findViewById(R.id.listview);
         view.setOnItemClickListener(new ClickListener());
         view.setOnItemLongClickListener(new ClickLongListener());
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onResume() {
+        System.out.println("testjes");
         super.onResume();
         adapter.notifyDataSetChanged();
     }

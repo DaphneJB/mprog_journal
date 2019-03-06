@@ -3,12 +3,16 @@ package com.example.journal;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.nio.file.ClosedFileSystemException;
 
 public class EntryDatabase extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "TABLE_NAME";
     private static EntryDatabase instance;
+    private int version;
 
     private EntryDatabase(Context context) {
         super(context, TABLE_NAME, null, 6);
@@ -46,9 +50,11 @@ public class EntryDatabase extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("title", entry.getTitle());
-        values.put("timestamp", entry.getTimestamp());
+        values.put("mood", entry.getMood());
         values.put("content", entry.getContent());
-        database.insert(TABLE_NAME,null,values);
+        database.insert("TABLE_NAME",null,values);
+        long numRows = DatabaseUtils.queryNumEntries(database, "TABLE_NAME");
+        System.out.println("aantal " + numRows);
     }
 
     public void delete(long id) {
