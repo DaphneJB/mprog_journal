@@ -35,45 +35,57 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <ImageView
+            android:id="@+id/mad"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="@drawable/mad" />
+            android:backgroundTint="@drawable/selector"
+            android:onClick="moodClicked"
+            app:srcCompat="@drawable/mad" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
+        <ImageView
+            android:id="@+id/sad"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="@drawable/sad" />
+            android:backgroundTint="@drawable/selector"
+            android:onClick="moodClicked"
+            app:srcCompat="@drawable/sad" />
 
-        <ImageButton
-            android:id="@+id/imageButton3"
+        <ImageView
+            android:id="@+id/depressive"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:background="@drawable/depressive" />
+            android:background="#acdfac"
+            android:onClick="moodClicked"
+            app:srcCompat="@drawable/depressive" />
 
-        <ImageButton
-            android:id="@+id/imageButton4"
+        <ImageView
+            android:id="@+id/great"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:background="@drawable/amazing" />
+            android:background="#acdfac"
+            android:onClick="moodClicked"
+            app:srcCompat="@drawable/amazing" />
 
-        <ImageButton
-            android:id="@+id/imageButton5"
+        <ImageView
+            android:id="@+id/happy"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:background="@drawable/happy" />
+            android:background="#acdfac"
+            android:onClick="moodClicked"
+            app:srcCompat="@drawable/happy" />
 
-        <ImageButton
-            android:id="@+id/imageButton6"
+        <ImageView
+            android:id="@+id/funny"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:background="@drawable/funny" />
+            android:background="#acdfac"
+            android:onClick="moodClicked"
+            app:srcCompat="@drawable/funny" />
     </LinearLayout>
 
     <Button

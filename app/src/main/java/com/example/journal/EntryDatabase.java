@@ -16,9 +16,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        System.out.println("versies: " + db.getVersion());
         String createTable = "CREATE TABLE TABLE_NAME (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, mood TEXT, timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
-        //System.out.println("versies: " + db.getVersion());
         db.execSQL(createTable);
         db.execSQL("INSERT INTO TABLE_NAME (title, content, mood) VALUES (\"test\", \"best\", \"great\")");
     }
@@ -26,7 +24,6 @@ public class EntryDatabase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS TABLE_NAME");
-        System.out.print("test");
         onCreate(db);
     }
 

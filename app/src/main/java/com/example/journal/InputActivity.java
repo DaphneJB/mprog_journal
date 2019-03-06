@@ -1,5 +1,6 @@
 package com.example.journal;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,4 +24,11 @@ public class InputActivity extends AppCompatActivity {
         JournalEntry entry = new JournalEntry(title.getText().toString(),content.getText().toString(),"great");
         EntryDatabase.getInstance(getApplicationContext()).insert(entry);
     }
+
+    public void moodClicked(View view) {
+        //view.setAlpha(1);
+        view.setBackgroundColor(Color.GRAY);
+    }
+
+
 }
