@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class InputActivity extends AppCompatActivity {
     private String mood = "happy";
@@ -21,7 +22,6 @@ public class InputActivity extends AppCompatActivity {
     }
 
     public void addEntry() {
-        System.out.println("he? " + mood);
         EditText title = findViewById(R.id.editTitle);
         EditText content = findViewById(R.id.editContent);
         JournalEntry entry = new JournalEntry(title.getText().toString(),content.getText().toString(),mood);
@@ -32,7 +32,6 @@ public class InputActivity extends AppCompatActivity {
     }
 
     public void moodClicked(View view) {
-        view.setBackgroundColor(Color.GRAY);
         int id = view.getId();
         switch(id) {
             case R.id.sad:
@@ -54,6 +53,7 @@ public class InputActivity extends AppCompatActivity {
                 mood = "happy";
                 break;
         }
+        Toast.makeText(getApplicationContext(), mood + " is selected", Toast.LENGTH_SHORT).show();
     }
 
 

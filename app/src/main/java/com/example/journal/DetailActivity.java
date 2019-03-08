@@ -1,6 +1,7 @@
 package com.example.journal;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class DetailActivity extends AppCompatActivity {
         //set the mood of the entry
         TextView moodView = findViewById(R.id.moodJournal);
         moodView.setText(retrievedEntry.getMood());
+        moodView.setTypeface(null,Typeface.ITALIC);
         //set the timestamp of the entry
         TextView timeView = findViewById(R.id.timestampJournal);
         timeView.setText(retrievedEntry.getTimestamp());

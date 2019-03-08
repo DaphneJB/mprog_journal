@@ -2,6 +2,7 @@ package com.example.journal;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.view.View;
 import android.support.v4.widget.ResourceCursorAdapter;
 //import android.widget.ResourceCursorAdapter;
@@ -31,6 +32,7 @@ public class EntryAdapter extends ResourceCursorAdapter {
         //vraagt mood op van dagboekdag
         String mood = cursor.getString(cursor.getColumnIndex("mood"));
         moodJournal.setText(mood);
+        moodJournal.setTypeface(null, Typeface.ITALIC);
         int drawableId = R.drawable.funny;
         switch(mood) {
             case "funny":
