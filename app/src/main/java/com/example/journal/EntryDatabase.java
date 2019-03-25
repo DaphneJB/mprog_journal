@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.nio.file.ClosedFileSystemException;
-
+//Represents the database that contains records which are journal entries
 public class EntryDatabase extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "TABLE_NAME";
     private static EntryDatabase instance;
@@ -17,6 +17,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
         super(context, TABLE_NAME, null, 6);
     }
 
+    //create table of db
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE TABLE_NAME (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, mood TEXT, timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
@@ -24,6 +25,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO TABLE_NAME (title, content, mood) VALUES (\"test\", \"best\", \"great\")");
     }
 
+    //delete table if it already exists
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS TABLE_NAME");
@@ -45,6 +47,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
         return cursor;
     }
 
+    //insert journal in db
     public void insert(JournalEntry entry) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -52,8 +55,6 @@ public class EntryDatabase extends SQLiteOpenHelper {
         values.put("mood", entry.getMood());
         values.put("content", entry.getContent());
         database.insert("TABLE_NAME",null,values);
-        long numRows = DatabaseUtils.queryNumEntries(database, "TABLE_NAME");
-        System.out.println("aantal " + numRows);
     }
 
     public void delete(long id) {

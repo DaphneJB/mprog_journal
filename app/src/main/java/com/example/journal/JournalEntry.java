@@ -2,6 +2,7 @@ package com.example.journal;
 
 import java.io.Serializable;
 
+//represents a journal entry with a given title, content and mood
 public class JournalEntry implements Serializable {
     private String title, content, mood, timestamp;
 

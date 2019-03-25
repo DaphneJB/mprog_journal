@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//represents the journal entry process
 public class InputActivity extends AppCompatActivity {
     private String mood = "happy";
 
@@ -21,6 +22,7 @@ public class InputActivity extends AppCompatActivity {
         addEntry();
     }
 
+    //add entry to the journal db with a given mood, title and context
     public void addEntry() {
         EditText title = findViewById(R.id.editTitle);
         EditText content = findViewById(R.id.editContent);
@@ -31,6 +33,7 @@ public class InputActivity extends AppCompatActivity {
         finish();
     }
 
+    //check which mood is selected by the user
     public void moodClicked(View view) {
         int id = view.getId();
         switch(id) {
@@ -53,8 +56,7 @@ public class InputActivity extends AppCompatActivity {
                 mood = "happy";
                 break;
         }
+        //show the user which mood is selected
         Toast.makeText(getApplicationContext(), mood + " is selected", Toast.LENGTH_SHORT).show();
     }
-
-
 }

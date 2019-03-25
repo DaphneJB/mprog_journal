@@ -5,7 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
+//shows detailed information about a selected journal entry
 public class DetailActivity extends AppCompatActivity {
 
     @Override

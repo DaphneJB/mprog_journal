@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
-
+//represents the homescreen of the journal app, showing all the journal entries to the user
 public class MainActivity extends AppCompatActivity {
     private EntryDatabase db;
     private EntryAdapter adapter;
@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         db = EntryDatabase.getInstance(getApplicationContext());
         adapter = new EntryAdapter(getApplicationContext(), db.selectAll());
         ListView view = findViewById(R.id.listview);
         view.setOnItemClickListener(new ClickListener());
+        //delete entry when clicked long
         view.setOnItemLongClickListener(new ClickLongListener());
         Parcelable state = view.onSaveInstanceState();
         view.setAdapter(adapter);
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //geklikt op een dag uit dagboek
+    //clicked on a journal entry
     private class ClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -48,10 +48,12 @@ public class MainActivity extends AppCompatActivity {
                             cursor.getColumnIndex("mood")));
             entry.setTimestamp(cursor.getString(cursor.getColumnIndex("timestamp")));
             intent.putExtra("entry", entry);
+            //redirect user for more details about the journal entry
             startActivity(intent);
         }
     }
 
+    //delete when clicked long
     private class ClickLongListener implements AdapterView.OnItemLongClickListener {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,15 +64,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //update screen when entry is added or removed
     private void updateData() {
         adapter.swapCursor(db.selectAll());
     }
 
+    //update screen when entry is added or removed
     @Override
     public void onResume() {
-        System.out.println("testjes");
         super.onResume();
         adapter.notifyDataSetChanged();
     }
-
 }

@@ -9,7 +9,7 @@ import android.support.v4.widget.ResourceCursorAdapter;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-
+////Represents an adapter that takes a list of entries and formats it to display
 public class EntryAdapter extends ResourceCursorAdapter {
 
     public EntryAdapter(Context context, Cursor cursor){
@@ -19,21 +19,22 @@ public class EntryAdapter extends ResourceCursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView titleJournal = view.findViewById(R.id.title);
-        //vraagt titel op van dagboekdag
+        //get title of journal entry
         String title = cursor.getString(cursor.getColumnIndex("title"));
         titleJournal.setText(title);
 
         TextView dateJournal = view.findViewById(R.id.date);
-        //vraagt datum op van dagboekdag
+        //get timestamp of journal entry
         String date = cursor.getString(cursor.getColumnIndex("timestamp"));
         dateJournal.setText(date);
 
         TextView moodJournal = view.findViewById(R.id.mood);
-        //vraagt mood op van dagboekdag
+        //get mood of journal entry
         String mood = cursor.getString(cursor.getColumnIndex("mood"));
         moodJournal.setText(mood);
         moodJournal.setTypeface(null, Typeface.ITALIC);
         int drawableId = R.drawable.funny;
+        //get drawable id to display the image of the mood from the entry
         switch(mood) {
             case "funny":
                 drawableId = R.drawable.funny;
